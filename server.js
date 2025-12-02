@@ -4,7 +4,13 @@ const Conn = require("./utils/db");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const Uploadrouter = require("./routes/file-route");
+const cors = require('cors');
 
+const corsOptions = {
+  origin: "https://rc-frontend-five.vercel.app",
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  credentials: true
+};
 const transporter = nodemailer.createTransport({
     service:"gmail",
 auth:    {
@@ -53,7 +59,7 @@ const PORT = 8000;
 
 //middlewares 
 app.use(express.json({}));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use("/upload",Uploadrouter);
 
 
